@@ -32,7 +32,7 @@ abstract class BaseProcess implements ProcessInterface
     /** @var string[] $warnings */
     private $warnings = [];
 
-    /** @var string $infos */
+    /** @var string[] $infos */
     private $infos = [];
 
     /**
@@ -133,6 +133,16 @@ abstract class BaseProcess implements ProcessInterface
             $this->addInfo($info);
         }
         return $this;
+    }
+
+    public function getInfos(): array
+    {
+        return $this->infos;
+    }
+
+    public function getFirstInfo(): ?string
+    {
+        return ArrayUtils::getByKey(0, $this->getInfos());
     }
 
     public function clearInfos(): ProcessInterface
